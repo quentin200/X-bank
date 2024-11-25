@@ -9,27 +9,27 @@ def signup():
     conf_pwd = input("Confirmez votre mot de passe : ")
 
     if conf_pwd == pwd:
-        # Créer un hash MD5 du mot de passe
+        # On un hash MD5 du mot de passe
         enc = conf_pwd.encode()
         hash1 = hashlib.md5(enc).hexdigest()
 
-        # Sauvegarder les données dans un fichier JSON
+        # On sauvegarde les données dans un fichier JSON
         user_data = {
             "username": username,
             "password": hash1
         }
 
-        # Lire les utilisateurs existants
+        # On lit les utilisateurs existants
         if os.path.exists("credentials.json"):
             with open("credentials.json", "r") as file:
                 users = json.load(file)
         else:
             users = []
 
-        # Ajouter le nouvel utilisateur à la liste
+        # On ajoute le nouvel utilisateur à la liste
         users.append(user_data)
 
-        # Sauvegarder à nouveau le fichier JSON avec les nouveaux utilisateurs
+        # On sauvegarde à nouveau le fichier JSON avec les nouveaux utilisateurs
         with open("credentials.json", "w") as file:
             json.dump(users, file, indent=4)
 
