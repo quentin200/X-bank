@@ -1,0 +1,5 @@
+clear terminal : 
+https://stackoverflow.com/questions/78448504/how-to-clear-multiple-previous-lines-in-the-console-in-python-3
+--> print(... , end="\r")
+
+
