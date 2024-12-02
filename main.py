@@ -1,20 +1,25 @@
 import math
 
-import hashlib
-import json
+#import hashlib
+#import json
+
+#import deque
+#from bisect import insoct
 
 #from terminalplot import plot
-import asciichartpy as acp
+#import asciichartpy as acp
 
-import plotext as plt
-import yfinance as yf
+#import plotext as plt
+#import yfinance as yf
+
+#import ystockquote
 
 import os
 import random
 
-import pyxel
+#import pyxel
 
-import bitcoin
+#import bitcoin
 
 class Currency:
     def __init__(self, name, value, total_shares, currency_id, is_real = False):
@@ -71,7 +76,13 @@ class Bank:
             
             
         
-
+    def update_users(self):
+        self.users = []
+        with open("credentials.json", "w") as file:
+            users = json.load(file)
+        for user in users:
+            self.users.append(Utilisateur(user["name"], user["surname"], user["password"], user["user_id"], user["permissions"], user["permissions"], user["balance"], user["wallet"], user["loans"], user["can_delete"], user["code"])
+        
     def main(self):
         pass
         
@@ -136,11 +147,37 @@ class Bank:
             print("Vous n'avez pas l'age requis pour un compte, revenez plus tard!", end = "\r")
             
 
-        
+        self.update_users()
 
         
     def login(self):
-        pass
+        nom = input("Entrez votre nom : ") 
+        prenom = input("Entrez votre nom : ") 
+        code = input("Entrez votre code a quatre : ")
+        # Créer un hash MD5 du mot de passe
+        auth = pwd.encode()
+        auth_hash = hashlib.md5(auth).hexdigest()
+
+        for user in self.users:
+            if user["username"] ==
+            
+
+        # Vérifier les identifiants avec le fichier JSON
+        try:
+            with open("credentials.json", "r") as file:
+                users = json.load(file)
+    
+            # Vérifier si l'utilisateur existe et le mot de passe est correct
+            for user in users:
+                if user["username"] == username and user["password"] == auth_hash:
+                    print("Connexion réussie !")
+                    return
+            
+            print("Échec de la connexion. Vérifiez votre nom d'utilisateur et mot de passe.\n")
+        
+        except FileNotFoundError:
+            print("Aucun utilisateur trouvé. Veuillez vous inscrire d'abord.\n")
+
         #a faire
             
         
